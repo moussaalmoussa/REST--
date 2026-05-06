@@ -5,7 +5,11 @@ import (
     "encoding/json"
     "fmt"
     "net/http"
-    // другие импорты (uuid, ваш логгер, model...)
+    "strings"
+
+    "effmob-subscriptions/internal/model"
+    "github.com/google/uuid"
+    "github.com/sirupsen/logrus"
 )
 
 type SubscriptionHandler struct {
