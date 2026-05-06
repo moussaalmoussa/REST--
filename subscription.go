@@ -1,4 +1,3 @@
-// model/subscription.go
 type Subscription struct {
     ID          string  `json:"id" db:"id"`
     ServiceName string  `json:"service_name" db:"service_name"`
