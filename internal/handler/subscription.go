@@ -29,20 +29,20 @@ func NewSubscriptionHandler(db *sql.DB, log *logrus.Logger) *SubscriptionHandler
 // @Failure      400 {object} map[string]string
 // @Router       /subscriptions [post]
 func (h *SubscriptionHandler) Create(w http.ResponseWriter, r *http.Request) {
-    func (h *SubscriptionHandler) Create(w http.ResponseWriter, r *http.Request) {
     var req model.Subscription
     if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-        // ...
+        // обработать ошибку
     }
-    // валидация даты, преобразование "MM-YYYY" -> date "YYYY-MM-01"
     startDate, err := ParseMonthYear(req.StartDate)
-    // ...
+    if err != nil {
+        // обработать ошибку
+    }
     id := uuid.New().String()
     _, err = h.db.Exec(`INSERT INTO subscriptions (id, service_name, price, user_id, start_date, end_date)
-        VALUES ($1, $2, $3, $4, $5, $6)`, id, req.ServiceName, req.Price, req.UserID, startDate, endDate)
-    // ...
+        VALUES ($1, $2, $3, $4, $5, $6)`, id, req.ServiceName, req.Price, req.UserID, startDate, req.EndDate)
+    // ответ клиенту...
 }
-}
+
 
 func (h *SubscriptionHandler) Get(w http.ResponseWriter, r *http.Request) { ... }
 func (h *SubscriptionHandler) Update(w http.ResponseWriter, r *http.Request) { ... }
@@ -52,7 +52,6 @@ func (h *SubscriptionHandler) List(w http.ResponseWriter, r *http.Request) { ...
 // ===== Агрегация =====
 
 func (h *SubscriptionHandler) Aggregate(w http.ResponseWriter, r *http.Request) {
-    func (h *SubscriptionHandler) Aggregate(w http.ResponseWriter, r *http.Request) {
     userID := r.URL.Query().Get("user_id")
     serviceName := r.URL.Query().Get("service_name")
     periodStart := r.URL.Query().Get("period_start")
@@ -91,4 +90,4 @@ func (h *SubscriptionHandler) Aggregate(w http.ResponseWriter, r *http.Request) 
     err := h.db.QueryRow(query, args...).Scan(&total)
     // ...
 }
-}
+
