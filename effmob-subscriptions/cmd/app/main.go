@@ -10,6 +10,12 @@ import (
     "os"
 )
 
+import (
+    _ "effmob-subscriptions/docs" // замените effmob-subscriptions на имя вашего модуля
+    httpSwagger "github.com/swaggo/http-swagger"
+    // ... остальные импорты
+)
+
 // @title          Subscription Aggregator API
 // @version        1.0
 // @description    Сервис управления подписками пользователей.
