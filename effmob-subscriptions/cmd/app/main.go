@@ -1,6 +1,8 @@
 package main
 
 import (
+    _ "effmob-subscriptions/docs" 
+    httpSwagger "github.com/swaggo/http-swagger"
     "effmob-subscriptions/internal/config"
     "effmob-subscriptions/internal/database"
     "effmob-subscriptions/internal/handler"
@@ -8,12 +10,6 @@ import (
     "github.com/gorilla/mux"
     "net/http"
     "os"
-)
-
-import (
-    _ "effmob-subscriptions/docs" // замените effmob-subscriptions на имя вашего модуля
-    httpSwagger "github.com/swaggo/http-swagger"
-    // ... остальные импорты
 )
 
 // @title          Subscription Aggregator API
