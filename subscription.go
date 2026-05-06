@@ -82,3 +82,14 @@ func (h *SubscriptionHandler) Aggregate(w http.ResponseWriter, r *http.Request) 
     // ...
 }
 }
+// CreateSubscription создаёт новую подписку.
+// @Summary      Создать подписку
+// @Description  Создаёт запись о подписке пользователя.
+// @Tags         subscriptions
+// @Accept       json
+// @Produce      json
+// @Param        body body model.Subscription true "Данные подписки"
+// @Success      201 {object} model.Subscription
+// @Failure      400 {object} map[string]string
+// @Router       /subscriptions [post]
+func (h *SubscriptionHandler) Create(w http.ResponseWriter, r *http.Request) { ... }
