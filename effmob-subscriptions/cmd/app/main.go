@@ -1,21 +1,19 @@
 package main
 
 import (
-    _ "effmob-subscriptions/docs" 
-    httpSwagger "github.com/swaggo/http-swagger"
     "effmob-subscriptions/internal/config"
     "effmob-subscriptions/internal/database"
     "effmob-subscriptions/internal/handler"
     "effmob-subscriptions/internal/logger"
+    _ "effmob-subscriptions/docs"             // <-- сюда
     "github.com/gorilla/mux"
+    httpSwagger "github.com/swaggo/http-swagger" // <-- сюда
     "net/http"
-    "os"
 )
 
 // @title          Subscription Aggregator API
 // @version        1.0
 // @description    Сервис управления подписками пользователей.
-
 // @host           localhost:8080
 // @BasePath       /
 
@@ -34,6 +32,10 @@ func main() {
     }
     r := mux.NewRouter()
     handler.RegisterHandlers(r, db, log)
+
+    // Swagger UI
+    r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+
     log.Infof("starting server on %s", cfg.ServerAddr)
     if err := http.ListenAndServe(cfg.ServerAddr, r); err != nil {
         log.Fatal(err)
