@@ -5,9 +5,9 @@ import (
     "effmob-subscriptions/internal/database"
     "effmob-subscriptions/internal/handler"
     "effmob-subscriptions/internal/logger"
-    "effmob-subscriptions/docs"      
+    // _ "effmob-subscriptions/docs"  // Отключено для локальной сборки
     "github.com/gorilla/mux"
-    "github.com/swaggo/http-swagger"
+    // httpSwagger "github.com/swaggo/http-swagger"
     "net/http"
 )
 
@@ -33,9 +33,8 @@ func main() {
     r := mux.NewRouter()
     handler.RegisterHandlers(r, db, log)
 
-    // Swagger UI
-    r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
-    
+    // r.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
+
     log.Infof("starting server on %s", cfg.ServerAddr)
     if err := http.ListenAndServe(cfg.ServerAddr, r); err != nil {
         log.Fatal(err)
