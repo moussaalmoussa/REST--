@@ -20,7 +20,7 @@ type DBConfig struct {
 }
 
 func Load() (*Config, error) {
-    _ = godotenv.Load() // файл .env загрузится, если есть
+    _ = godotenv.Load()
     return &Config{
         ServerAddr: getEnv("SERVER_ADDR", ":8080"),
         DB: DBConfig{
