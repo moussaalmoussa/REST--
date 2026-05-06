@@ -115,4 +115,15 @@ func (h *SubscriptionHandler) Aggregate(w http.ResponseWriter, r *http.Request) 
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(map[string]int{"total": total})
 }
-
+func (h *SubscriptionHandler) Get(w http.ResponseWriter, r *http.Request) {
+    panic("not implemented")
+}
+func (h *SubscriptionHandler) Update(w http.ResponseWriter, r *http.Request) {
+    panic("not implemented")
+}
+func (h *SubscriptionHandler) Delete(w http.ResponseWriter, r *http.Request) {
+    panic("not implemented")
+}
+func (h *SubscriptionHandler) List(w http.ResponseWriter, r *http.Request) {
+    panic("not implemented")
+}
