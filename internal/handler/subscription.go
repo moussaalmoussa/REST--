@@ -12,6 +12,15 @@ import (
     "github.com/sirupsen/logrus"
 )
 
+func ParseMonthYear(s string) (string, error) {
+    // ожидается "MM-YYYY", вернуть "YYYY-MM-01"
+    parts := strings.Split(s, "-")
+    if len(parts) != 2 {
+        return "", fmt.Errorf("invalid format")
+    }
+    return fmt.Sprintf("%s-%s-01", parts[1], parts[0]), nil
+}
+
 type SubscriptionHandler struct {
     db  *sql.DB
     log *logrus.Logger
