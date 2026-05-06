@@ -1,3 +1,5 @@
+package model
+
 // model/subscription.go
 type Subscription struct {
     ID          string  `json:"id" db:"id"`
