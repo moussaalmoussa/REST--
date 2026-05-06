@@ -18,7 +18,16 @@ func NewSubscriptionHandler(db *sql.DB, log *logrus.Logger) *SubscriptionHandler
 }
 
 // ===== CRUDL =====
-
+// CreateSubscription создаёт новую подписку.
+// @Summary      Создать подписку
+// @Description  Создаёт запись о подписке пользователя.
+// @Tags         subscriptions
+// @Accept       json
+// @Produce      json
+// @Param        body body model.Subscription true "Данные подписки"
+// @Success      201 {object} model.Subscription
+// @Failure      400 {object} map[string]string
+// @Router       /subscriptions [post]
 func (h *SubscriptionHandler) Create(w http.ResponseWriter, r *http.Request) {
     func (h *SubscriptionHandler) Create(w http.ResponseWriter, r *http.Request) {
     var req model.Subscription
