@@ -1,3 +1,5 @@
+package logger
+
 // logger/logger.go
 func New() *logrus.Logger {
     l := logrus.New()
